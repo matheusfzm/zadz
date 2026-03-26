@@ -1,6 +1,6 @@
 # ═══════════════════════════════════════════
 # robots.txt — ZADZ Agência de Tráfego Pago
-# https://zadz.com.br/robots.txt
+# https://zadz.netlify.app/robots.txt
 # ═══════════════════════════════════════════
 
 # Permite todos os crawlers principais
@@ -66,7 +66,7 @@ User-agent: Applebot
 Allow: /
 
 # ─── Sitemap ───────────────────────────────
-Sitemap: https://zadz.com.br/sitemap.xml
+Sitemap: https://zadz.netlify.app/sitemap.xml
 
 # ─── Host canônico ─────────────────────────
-Host: https://zadz.com.br
+Host: https://zadz.netlify.app
