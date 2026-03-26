@@ -1,61 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-  xsi:schemaLocation="
-    http://www.sitemaps.org/schemas/sitemap/0.9
-    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
-    http://www.google.com/schemas/sitemap-image/1.1
-    http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
-
-  <!-- Página Principal -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://zadz.com.br/</loc>
-    <lastmod>2026-03-01</lastmod>
+    <loc>https://zadz.netlify.app/</loc>
+    <lastmod>2026-03-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://zadz.com.br/og-image.jpg</image:loc>
-      <image:title>ZADZ — Agência de Tráfego Pago em Marília/SP</image:title>
-      <image:caption>Especialistas em Google Ads e Meta Ads com ROAS médio de 4.8x</image:caption>
-    </image:image>
   </url>
-
-  <!-- Âncoras internas (seções da homepage) -->
   <url>
-    <loc>https://zadz.com.br/#servicos</loc>
-    <lastmod>2026-03-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://zadz.netlify.app/politica-de-privacidade</loc>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
-
-  <url>
-    <loc>https://zadz.com.br/#resultados</loc>
-    <lastmod>2026-03-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://zadz.com.br/#precos</loc>
-    <lastmod>2026-03-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://zadz.com.br/#depoimentos</loc>
-    <lastmod>2026-03-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://zadz.com.br/#faq</loc>
-    <lastmod>2026-03-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
 </urlset>
