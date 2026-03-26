@@ -1,0 +1,72 @@
+# ═══════════════════════════════════════════
+# robots.txt — ZADZ Agência de Tráfego Pago
+# https://zadz.com.br/robots.txt
+# ═══════════════════════════════════════════
+
+# Permite todos os crawlers principais
+User-agent: *
+Allow: /
+
+# Bloqueia arquivos desnecessários para indexação
+Disallow: /netlify/
+Disallow: /.netlify/
+Disallow: /node_modules/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+
+# Googlebot — configurações específicas
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Googlebot Images
+User-agent: Googlebot-Image
+Allow: /
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# ─── LLMs / AI Crawlers (GEO — Generative Engine Optimization) ───
+# Permite que assistentes de IA indexem o conteúdo do site
+# para aparecer em respostas geradas por IA
+
+# ChatGPT / OpenAI
+User-agent: GPTBot
+Allow: /
+
+# ChatGPT Plugin
+User-agent: ChatGPT-User
+Allow: /
+
+# Google Bard / Gemini
+User-agent: Google-Extended
+Allow: /
+
+# Claude (Anthropic)
+User-agent: ClaudeBot
+Allow: /
+
+# Common Crawl (base para muitos LLMs)
+User-agent: CCBot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Meta AI
+User-agent: meta-externalagent
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+# ─── Sitemap ───────────────────────────────
+Sitemap: https://zadz.com.br/sitemap.xml
+
+# ─── Host canônico ─────────────────────────
+Host: https://zadz.com.br
