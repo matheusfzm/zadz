@@ -1,0 +1,47 @@
+name: 📰 Atualização Semanal do Blog Zadz
+
+on:
+  # Executa toda segunda-feira às 10h (horário de Brasília = 13h UTC)
+  schedule:
+    - cron: '0 13 * * 1'
+
+  # Permite rodar manualmente pela aba "Actions" do GitHub
+  workflow_dispatch:
+
+jobs:
+  update-blog:
+    name: Gerar Post Semanal
+    runs-on: ubuntu-latest
+
+    # Permissão para fazer commit no repositório
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: 🐍 Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Instalar dependências
+        run: |
+          pip install --quiet feedparser
+
+      - name: 🤖 Executar script de geração de post
+        run: python scripts/generate_post.py
+
+      - name: 💾 Commit e push se houver mudanças
+        run: |
+          git config --global user.name "Zadz Blog Bot 🤖"
+          git config --global user.email "bot@zadz.com.br"
+          git add posts.json
+          if git diff --staged --quiet; then
+            echo "Nenhuma mudança para commitar."
+          else
+            git commit -m "📰 Nova publicação semanal — $(date +'%d/%m/%Y')"
+            git push
+            echo "✅ Post publicado com sucesso!"
+          fi
