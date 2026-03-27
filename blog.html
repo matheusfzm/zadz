@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Zadz | Tráfego Pago</title>
+  <meta name="description" content="Novidades semanais sobre tráfego pago, Google Ads, Meta Ads e performance digital pela Zadz." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface2: #1a1a1a;
+      --border: #222222;
+      --accent: #ff4d00;
+      --accent2: #ff8c42;
+      --text: #f0ece4;
+      --muted: #888880;
+      --tag-bg: #1e1e1e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      padding: 5rem 2.5rem 3.5rem;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      letter-spacing: -0.01em;
+      line-height: 0.9;
+      color: var(--text);
+    }
+
+    .hero-title .outline {
+      -webkit-text-stroke: 1px var(--muted);
+      color: transparent;
+    }
+
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 42ch;
+      line-height: 1.7;
+    }
+
+    .hero-accent-line {
+      position: absolute;
+      right: 2.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(6rem, 16vw, 18rem);
+      letter-spacing: -0.02em;
+      -webkit-text-stroke: 1px #1f1f1f;
+      color: transparent;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      overflow: hidden;
+      background: var(--accent);
+      padding: 0.6rem 0;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: inline-block;
+      animation: ticker 28s linear infinite;
+    }
+
+    .ticker-track span {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0 2.5rem;
+    }
+
+    .ticker-track span::after {
+      content: '◆';
+      margin-left: 2.5rem;
+      opacity: 0.5;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    /* ── CONTROLS ── */
+    .controls {
+      padding: 2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .filter-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .post-count {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── FEATURED POST ── */
+    .featured-section {
+      padding: 3rem 0 2rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .featured-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.3s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .featured-card:hover { border-color: var(--accent); }
+
+    .featured-card-visual {
+      background: var(--surface2);
+      position: relative;
+      min-height: 340px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .featured-card-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(255,77,0,0.15) 0%, transparent 70%);
+    }
+
+    .featured-visual-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 10rem;
+      color: #1a1a1a;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .featured-visual-tag {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+    }
+
+    .featured-card-body {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--surface);
+    }
+
+    .featured-card-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+
+    .featured-card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .featured-card-summary {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .featured-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .read-more {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .read-more svg { transition: transform 0.2s; }
+    .featured-card:hover .read-more svg { transform: translateX(4px); }
+
+    /* ── GRID ── */
+    .posts-section { padding: 2rem 0 5rem; }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .post-card {
+      background: var(--bg);
+      padding: 2rem;
+      cursor: pointer;
+      transition: background 0.25s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .post-card:hover { background: var(--surface); }
+
+    .post-card-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    .post-card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .post-card-summary {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .post-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .post-date {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .post-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .post-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 2px;
+    }
+
+    /* ── SOURCES ── */
+    .sources-list {
+      margin-top: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .source-link {
+      font-size: 0.78rem;
+      color: var(--accent2);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.2s;
+    }
+
+    .source-link:hover { color: var(--accent); }
+
+    /* ── LOADING / EMPTY ── */
+    .loading-state, .empty-state {
+      padding: 5rem 0;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .loading-dots {
+      display: inline-flex;
+      gap: 0.4rem;
+    }
+
+    .loading-dots span {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: blink 1.2s infinite;
+    }
+
+    .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes blink {
+      0%, 80%, 100% { opacity: 0.2; }
+      40% { opacity: 1; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    footer .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    footer .footer-logo span { color: var(--accent); }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MODAL ── */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 200;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem;
+      overflow-y: auto;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      max-width: 720px;
+      width: 100%;
+      padding: 3rem;
+      margin: auto;
+      position: relative;
+      transform: translateY(30px);
+      transition: transform 0.3s;
+    }
+
+    .modal-backdrop.open .modal { transform: translateY(0); }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 36px; height: 36px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover { border-color: var(--accent); color: var(--accent); }
+
+    .modal-tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-date {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .modal-body {
+      font-size: 0.95rem;
+      color: #ccc9c0;
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+
+    .modal-sources {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .modal-sources h4 {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .hero { padding: 3rem 1.25rem 2.5rem; }
+      .hero-accent-line { display: none; }
+      .container { padding: 0 1.25rem; }
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-card-visual { min-height: 200px; }
+      .posts-grid { grid-template-columns: 1fr; }
+      .modal { padding: 2rem 1.5rem; }
+      footer { padding: 1.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">ZAD<span>Z</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/#servicos">Serviços</a></li>
+      <li><a href="/#contato">Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Zadz — Conteúdo Semanal</p>
+    <h1 class="hero-title">
+      BLOG<br>
+      <span class="outline">ZADZ</span>
+    </h1>
+    <p class="hero-sub">Novidades do mundo de tráfego pago, curadas toda semana para você ficar à frente da concorrência.</p>
+    <div class="hero-accent-line" aria-hidden="true">ZDZ</div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Google Ads</span>
+      <span>Meta Ads</span>
+      <span>Performance Max</span>
+      <span>Tráfego Pago</span>
+      <span>ROI</span>
+      <span>Conversões</span>
+      <span>Smart Bidding</span>
+      <span>TikTok Ads</span>
+      <span>Remarketing</span>
+      <span>Google Ads</span>
+      <span>Meta Ads</span>
+      <span>Performance Max</span>
+      <span>Tráfego Pago</span>
+      <span>ROI</span>
+      <span>Conversões</span>
+      <span>Smart Bidding</span>
+      <span>TikTok Ads</span>
+      <span>Remarketing</span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+
+    <!-- CONTROLS -->
+    <div class="controls reveal">
+      <div class="filter-tags" id="filter-tags">
+        <button class="filter-btn active" data-tag="todos">Todos</button>
+      </div>
+      <p class="post-count" id="post-count"></p>
+    </div>
+
+    <!-- FEATURED -->
+    <section class="featured-section" id="featured-section">
+      <p class="section-label">Mais Recente</p>
+      <div id="featured-container">
+        <div class="loading-state">
+          <div class="loading-dots">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="posts-section">
+      <p class="section-label">Todas as Publicações</p>
+      <div class="posts-grid" id="posts-grid"></div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-logo">ZAD<span>Z</span></p>
+    <p>© <span id="year"></span> Zadz Agência. Atualizado automaticamente toda semana.</p>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-backdrop" id="modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close" aria-label="Fechar">✕</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ── REVEAL OBSERVER ──
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── HELPERS ──
+    function formatDate(dateStr) {
+      const d = new Date(dateStr + 'T12:00:00');
+      return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+    }
+
+    function tagBadges(tags = []) {
+      return tags.map(t => `<span class="post-tag">${t}</span>`).join('');
+    }
+
+    function sourceLinks(sources = []) {
+      if (!sources.length) return '';
+      return sources.map(s =>
+        `<a class="source-link" href="${s.url}" target="_blank" rel="noopener">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          ${s.title}
+        </a>`
+      ).join('');
+    }
+
+    // ── MODAL ──
+    const backdrop = document.getElementById('modal-backdrop');
+    const modalClose = document.getElementById('modal-close');
+
+    function openModal(post) {
+      document.getElementById('modal-content').innerHTML = `
+        <div class="modal-tag">${post.tags?.[0] || 'Blog'}</div>
+        <h2 class="modal-title">${post.title}</h2>
+        <p class="modal-date">${formatDate(post.date)}</p>
+        <div class="modal-body">${post.content || post.summary}</div>
+        ${post.sources?.length ? `
+          <div class="modal-sources">
+            <h4>Fontes desta semana</h4>
+            ${sourceLinks(post.sources)}
+          </div>` : ''}
+      `;
+      backdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      backdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // ── RENDER ──
+    let allPosts = [];
+    let activeTag = 'todos';
+
+    function renderFeatured(post, idx) {
+      const el = document.getElementById('featured-container');
+      el.innerHTML = `
+        <div class="featured-card reveal" role="button" tabindex="0">
+          <div class="featured-card-visual">
+            <div class="featured-visual-number">0${idx + 1}</div>
+            <div class="featured-visual-tag">${post.tags?.[0] || 'Novidade'}</div>
+          </div>
+          <div class="featured-card-body">
+            <div>
+              <p class="featured-card-meta">${formatDate(post.date)}</p>
+              <h2 class="featured-card-title">${post.title}</h2>
+              <p class="featured-card-summary">${post.summary}</p>
+              <div class="post-tags" style="margin-top:1rem;">${tagBadges(post.tags)}</div>
+            </div>
+            <div class="featured-card-footer">
+              <div class="read-more">
+                Ler mais
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              ${post.sources?.length ? `<span style="font-size:.75rem;color:var(--muted)">${post.sources.length} fonte${post.sources.length > 1 ? 's' : ''}</span>` : ''}
+            </div>
+          </div>
+        </div>`;
+      const card = el.querySelector('.featured-card');
+      card.addEventListener('click', () => openModal(post));
+      card.addEventListener('keydown', e => { if (e.key === 'Enter') openModal(post); });
+      observer.observe(card);
+    }
+
+    function renderGrid(posts) {
+      const grid = document.getElementById('posts-grid');
+      if (!posts.length) {
+        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;padding:3rem;text-align:center;color:var(--muted)">Nenhum post encontrado.</div>`;
+        return;
+      }
+      grid.innerHTML = posts.map((post, i) => `
+        <div class="post-card reveal" role="button" tabindex="0" data-index="${allPosts.indexOf(post)}">
+          <p class="post-card-num">${String(allPosts.indexOf(post) + 1).padStart(2, '0')}</p>
+          <h3 class="post-card-title">${post.title}</h3>
+          <p class="post-card-summary">${post.summary}</p>
+          <div class="post-tags">${tagBadges(post.tags)}</div>
+          <div class="post-card-footer">
+            <span class="post-date">${formatDate(post.date)}</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>`).join('');
+
+      grid.querySelectorAll('.post-card').forEach(card => {
+        const post = allPosts[parseInt(card.dataset.index)];
+        card.addEventListener('click', () => openModal(post));
+        card.addEventListener('keydown', e => { if (e.key === 'Enter') openModal(post); });
+        observer.observe(card);
+      });
+    }
+
+    function buildFilters(posts) {
+      const tags = new Set();
+      posts.forEach(p => (p.tags || []).forEach(t => tags.add(t)));
+      const container = document.getElementById('filter-tags');
+      tags.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn';
+        btn.dataset.tag = tag;
+        btn.textContent = tag;
+        container.appendChild(btn);
+      });
+      container.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeTag = btn.dataset.tag;
+          container.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          applyFilter();
+        });
+      });
+    }
+
+    function applyFilter() {
+      const filtered = activeTag === 'todos'
+        ? allPosts.slice(1)
+        : allPosts.slice(1).filter(p => (p.tags || []).includes(activeTag));
+      document.getElementById('post-count').textContent =
+        `${filtered.length + 1} post${filtered.length + 1 !== 1 ? 's' : ''}`;
+      renderGrid(filtered);
+    }
+
+    // ── LOAD DATA ──
+    fetch('posts.json')
+      .then(r => r.json())
+      .then(data => {
+        allPosts = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+        if (!allPosts.length) {
+          document.getElementById('featured-container').innerHTML =
+            `<div class="empty-state"><p>Nenhuma publicação ainda. Volte em breve!</p></div>`;
+          return;
+        }
+        renderFeatured(allPosts[0], 0);
+        buildFilters(allPosts);
+        applyFilter();
+        document.getElementById('post-count').textContent =
+          `${allPosts.length} post${allPosts.length !== 1 ? 's' : ''}`;
+      })
+      .catch(() => {
+        document.getElementById('featured-container').innerHTML =
+          `<div class="empty-state"><p>Erro ao carregar posts. Tente novamente.</p></div>`;
+      });
+  </script>
+</body>
+</html>

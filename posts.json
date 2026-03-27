@@ -1,0 +1,26 @@
+[
+  {
+    "id": "2025-03-24-meta-ads-advantage-plus",
+    "title": "Meta Advantage+: Como a IA está mudando as campanhas de tráfego pago",
+    "date": "2025-03-24",
+    "summary": "O Meta Advantage+ Shopping continua evoluindo com novas funcionalidades de automação que estão revolucionando a forma como as agências gerenciam campanhas de e-commerce. Entenda o que mudou e como adaptar sua estratégia.",
+    "content": "O Meta Advantage+ Shopping continua evoluindo com novas funcionalidades de automação que estão revolucionando a forma como as agências gerenciam campanhas de e-commerce.\n\nA principal novidade é a expansão dos públicos automáticos, que agora permite que o algoritmo explore audiências além das segmentações definidas manualmente quando identifica oportunidades de conversão.\n\nAlém disso, o creative automation foi aprimorado: o sistema agora testa automaticamente variações de textos, imagens e calls-to-action, entregando a combinação com melhor desempenho para cada perfil de usuário.\n\nPara gestores de tráfego, isso significa que a curadoria criativa e a análise estratégica de resultados ganham ainda mais importância — enquanto a otimização técnica fica cada vez mais nas mãos da plataforma.\n\nComo adaptar sua estratégia:\n• Invista em volume e qualidade de criativos\n• Defina bem os eventos de conversão no Pixel\n• Use o Budget Campaign Level para dar liberdade ao algoritmo\n• Acompanhe métricas de topo (CPM, CTR) além das de fundo (CPA)",
+    "tags": ["Meta Ads", "Automação", "E-commerce"],
+    "sources": [
+      { "title": "Meta Business Blog", "url": "https://www.facebook.com/business/news" },
+      { "title": "Search Engine Journal — Paid Social", "url": "https://www.searchenginejournal.com/category/paid-social/" }
+    ]
+  },
+  {
+    "id": "2025-03-17-google-pmax-2025",
+    "title": "Performance Max em 2025: Novas ferramentas de transparência e controle",
+    "date": "2025-03-17",
+    "summary": "O Google está respondendo às críticas sobre a falta de transparência no Performance Max com novos relatórios de placement, controles de brand safety e insights de asset group. Veja o que mudou e o que ainda falta.",
+    "content": "O Google está respondendo às críticas sobre a falta de transparência no Performance Max (PMax) com um conjunto de melhorias significativas lançadas no início de 2025.\n\nOs principais updates incluem:\n\n1. Relatórios de canal detalhados: agora é possível ver a distribuição de impressões e conversões entre Search, Display, YouTube, Gmail e Shopping dentro de uma mesma campanha PMax.\n\n2. Brand Safety controls: os anunciantes podem excluir categorias de conteúdo sensível e adicionar listas de exclusão de placement em nível de campanha.\n\n3. Asset Group insights: relatórios expandidos mostram quais combinações de criativos performam melhor em cada canal, ajudando na tomada de decisão criativa.\n\nO que ainda falta:\nApesar dos avanços, gestores de tráfego ainda reclamam da impossibilidade de ver as queries de busca que ativam os anúncios e da dificuldade em isolar o performance de Search Genérico versus Brand.\n\nRecomendação Zadz: Use PMax em conjunto com campanhas de Search focadas em brand e branded keywords, e monitore de perto a segmentação de audiência nos sinais para garantir que o algoritmo está sendo guiado corretamente.",
+    "tags": ["Google Ads", "Performance Max", "Estratégia"],
+    "sources": [
+      { "title": "Google Ads Blog", "url": "https://blog.google/products/ads/" },
+      { "title": "Search Engine Land — Google Ads", "url": "https://searchengineland.com/category/google-ads" }
+    ]
+  }
+]
