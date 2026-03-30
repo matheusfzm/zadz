@@ -1257,10 +1257,146 @@
   }
 
   @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hero-stats { gap: 28px; flex-wrap: wrap; }
-    .chat-window { width: 320px; right: -10px; }
+  .nav-links { display: none; }         /* já existia */
+  .hero-stats { gap: 28px; flex-wrap: wrap; }  /* já existia */
+  .chat-window { width: 320px; right: -10px; } /* já existia */
+
+  /* ── Novo: menu mobile ── */
+  .nav-hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
   }
+
+  .nav-hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .nav-links.mobile-open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 65px; left: 0; right: 0;
+    background: rgba(8,11,16,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 5%;
+    gap: 20px;
+    z-index: 99;
+  }
+}
+
+/* Esconder hambúrguer em desktop */
+.nav-hamburger { display: none; }
+
+  /* ── BLOG GRID ─────────────────────────────── */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 8px;
+}
+
+.blog-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0,229,255,.12);
+  border-color: rgba(0,229,255,.35);
+}
+
+.blog-cover {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--bg2);
+}
+
+.blog-cover img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+
+.blog-card:hover .blog-cover img { transform: scale(1.05); }
+
+.blog-cover-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--bg2), var(--bg3));
+  font-size: 2.5rem;
+  aspect-ratio: 16/9;
+}
+
+.blog-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+}
+
+.blog-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(0,229,255,.08);
+  border: 1px solid rgba(0,229,255,.15);
+  border-radius: 100px;
+  padding: 3px 10px;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.blog-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.blog-summary {
+  font-size: 0.87rem;
+  color: var(--muted);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.blog-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.blog-read-more { color: var(--accent); font-weight: 600; }
+
 </style>
 </head>
 <body>
@@ -1270,13 +1406,20 @@
   <nav aria-label="Navegação principal">
     <a href="/" class="logo" aria-label="ZADZ — Agência de Tráfego Pago">ZAD<span>Z</span></a>
     <ul class="nav-links" role="list">
-      <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#resultados">Resultados</a></li>
-      <li><a href="#precos">Preços</a></li>
-      <li><a href="#depoimentos">Depoimentos</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="https://wa.me/5514996086859" target="_blank" rel="noopener noreferrer" class="nav-cta">Falar comigo</a></li>
-    </ul>
+      <button class="nav-hamburger" id="navHamburger"
+        aria-label="Abrir menu de navegação"
+        aria-expanded="false"
+        onclick="toggleMobileMenu()">
+  <span></span><span></span><span></span>
+</button>
+  <li><a href="#servicos">Serviços</a></li>
+  <li><a href="#resultados">Resultados</a></li>
+  <li><a href="#precos">Preços</a></li>
+  <li><a href="#depoimentos">Depoimentos</a></li>
+  <li><a href="#faq">FAQ</a></li>
+  <li><a href="#blog">Blog</a></li>
+  <li><a href="https://wa.me/5514996086859" target="_blank" rel="noopener noreferrer" class="nav-cta">Falar comigo</a></li>
+</ul>
   </nav>
 </header>
 
@@ -1307,18 +1450,23 @@
         Ver resultados →
       </a>
     </div>
-    <div class="hero-stats" aria-label="Números da ZADZ">
-      <div class="stat-item">
-        <span class="stat-num" aria-label="Mais de 120 clientes atendidos">+120</span>
-        <span class="stat-label">Clientes atendidos</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num" aria-label="Mais de 2 milhões de reais em tráfego gerenciado">R$2M+</span>
-        <span class="stat-label">Em tráfego gerenciado</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num" aria-label="ROAS médio de 4.8 vezes">4.8×</span>
-        <span class="stat-label">ROAS médio</span>
+    <span class="stat-num"
+  data-target="120"
+  data-prefix="+"
+  data-suffix=""
+  aria-label="Mais de 120 clientes atendidos">+120</span>
+
+<span class="stat-num"
+  data-target="2"
+  data-prefix="R$"
+  data-suffix="M+"
+  aria-label="Mais de 2 milhões em tráfego gerenciado">R$2M+</span>
+
+<span class="stat-num"
+  data-target="4.8"
+  data-prefix=""
+  data-suffix="×"
+  aria-label="ROAS médio de 4.8 vezes">4.8×</span>
       </div>
     </div>
   </div>
@@ -1368,7 +1516,7 @@
 <div class="divider" role="separator"></div>
 
 <!-- RESULTS -->
-<section id="resultados" aria-labelledby="resultados-heading">
+<section id="resultados" aria-labelledby="resultados-heading" class="reveal">
   <span class="section-label" aria-hidden="true">Cases reais</span>
   <h2 id="resultados-heading">Resultados que<br>falam por si</h2>
   <p class="section-sub">Números reais de clientes reais. Sem print editado, sem promessa vazia. Veja o que a ZADZ já entregou.</p>
@@ -1433,7 +1581,7 @@
 <div class="divider" role="separator"></div>
 
 <!-- PRICING -->
-<section id="precos" aria-labelledby="precos-heading">
+<section id="precos" aria-labelledby="precos-heading" class="reveal">
   <span class="section-label" aria-hidden="true">Investimento</span>
   <h2 id="precos-heading">Planos transparentes<br>sem letra miúda</h2>
   <p class="section-sub">Escolha o plano ideal para o seu momento. Todos incluem relatórios e suporte direto. Valores são da gestão — verba de anúncios é à parte.</p>
@@ -1486,7 +1634,7 @@
 <div class="divider" role="separator"></div>
 
 <!-- TESTIMONIALS -->
-<section id="depoimentos" aria-labelledby="depoimentos-heading">
+<section id="depoimentos" aria-labelledby="depoimentos-heading" class="reveal">
   <span class="section-label" aria-hidden="true">Depoimentos</span>
   <h2 id="depoimentos-heading">O que dizem<br>nossos clientes</h2>
   <p class="section-sub">Resultados reais de pessoas reais que confiaram no nosso trabalho de gestão de tráfego pago.</p>
@@ -1545,7 +1693,7 @@
 <div class="divider" role="separator"></div>
 
 <!-- FAQ — SEO + GEO -->
-<section id="faq" aria-labelledby="faq-heading">
+<section id="faq" aria-labelledby="faq-heading" class="reveal">
   <span class="section-label" aria-hidden="true">Dúvidas frequentes</span>
   <h2 id="faq-heading">Perguntas frequentes<br>sobre tráfego pago</h2>
   <p class="section-sub">Tudo que você precisa saber antes de contratar uma agência de tráfego pago.</p>
@@ -1634,7 +1782,24 @@
 
   </div>
 </section>
+<div class="divider" role="separator"></div>
 
+<!-- BLOG -->
+<section id="blog" aria-labelledby="blog-heading" class="reveal">
+  <span class="section-label" aria-hidden="true">Conteúdo gratuito</span>
+  <h2 id="blog-heading">Novidades de<br><span style="color:var(--accent)">Tráfego Pago</span></h2>
+  <p class="section-sub">Curadoria semanal com atualizações de Google Ads, Meta Ads e performance digital para você escalar seus resultados.</p>
+
+  <div class="blog-grid" id="blogGrid" role="list">
+    <p style="color:var(--muted); font-size:0.9rem;">Carregando posts...</p>
+  </div>
+
+  <div style="margin-top: 40px;">
+    <a href="/blog.html" class="btn-secondary" aria-label="Ver todos os posts do blog da ZADZ">
+      Ver todos os posts →
+    </a>
+  </div>
+</section>
 </main>
 
 <!-- FOOTER -->
@@ -1746,6 +1911,14 @@ const revealObserver = new IntersectionObserver((entries) => {
   threshold: 0.12
 });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── Menu mobile ──────────────────────────────
+function toggleMobileMenu() {
+  const nav  = document.querySelector('.nav-links');
+  const btn  = document.getElementById('navHamburger');
+  const open = nav.classList.toggle('mobile-open');
+  btn.setAttribute('aria-expanded', open);
+}
 
 // ── Counter animado nos stats do Hero ────────
 function animateCounter(el, target, prefix = '', suffix = '') {
@@ -1902,6 +2075,62 @@ document.querySelectorAll('[data-target]').forEach(el => statsObserver.observe(e
       document.getElementById('chatNotif').style.display = 'block';
     }
   }, 4000);
+
+  // ── Blog: carrega posts.json ──────────────────
+async function loadBlogPosts() {
+  const grid = document.getElementById('blogGrid');
+  if (!grid) return;
+
+  try {
+    const res   = await fetch('/posts.json');
+    const posts = await res.json();
+
+    if (!posts || posts.length === 0) {
+      grid.innerHTML = '<p style="color:var(--muted)">Nenhum post disponível ainda.</p>';
+      return;
+    }
+
+    const recent = posts.slice(0, 3);
+
+    grid.innerHTML = recent.map(post => {
+      const date = post.date
+        ? new Date(post.date + 'T00:00:00').toLocaleDateString('pt-BR',
+            { day: '2-digit', month: 'short', year: 'numeric' })
+        : '';
+
+      const tags = (post.tags || []).slice(0, 2)
+        .map(t => `<span class="blog-tag">${t}</span>`).join('');
+
+      const cover = post.image
+        ? `<img src="${post.image}" alt="Capa: ${post.title}" loading="lazy">`
+        : `<div class="blog-cover-placeholder" aria-hidden="true">📰</div>`;
+
+      const summary = (post.summary || '').slice(0, 120) + '...';
+      const title   = post.title.replace(/📰\s?/, '');
+
+      return `
+        <a href="/blog.html?id=${post.id}" class="blog-card" role="listitem"
+           aria-label="Ler post: ${title}">
+          <div class="blog-cover">${cover}</div>
+          <div class="blog-body">
+            <div>${tags}</div>
+            <h3>${title}</h3>
+            <p class="blog-summary">${summary}</p>
+            <div class="blog-meta">
+              <span>${date}</span>
+              <span class="blog-read-more">Ler post →</span>
+            </div>
+          </div>
+        </a>`;
+    }).join('');
+
+  } catch (e) {
+    grid.innerHTML = '<p style="color:var(--muted)">Não foi possível carregar os posts.</p>';
+    console.error('Blog load error:', e);
+  }
+}
+
+loadBlogPosts();
 
   // Popup ao chegar no fim da página
   let scrollPopupTriggered = false;
