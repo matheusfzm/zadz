@@ -1,14 +1,71 @@
 [
   {
+    "id": "2026-03-30-semana-dd8824",
+    "title": "📰 Novidades de Tráfego Pago — 30/03/2026",
+    "date": "2026-03-30",
+    "summary": "Curadoria semanal com 8 destaques do mundo de tráfego pago: Google Ads, Meta Ads, estratégias e muito mais.",
+    "content": "Esta semana trouxe novidades importantes no universo de tráfego pago. Reunimos os principais destaques para você se manter atualizado e à frente da concorrência.\n\n📌 DESTAQUES DA SEMANA:\n\n• Ad Creative Strategy: The Easy Way to Improve Facebook and Instagram ROAS [Social Media Examiner]\n• Google Ads for Sensitive Categories: What You Need to Know to Succeed [WordStream]\n• How Much Do Instagram Ads Cost in 2026? (+How to Make the Most of Your Budget) [WordStream]\n• Everything You Need to Know About Hero Conf UK 2026 [PPC Hero]\n• Programmatic Campaigns in 2026: Employing Tactics, Data, and Bid Strategies [PPC Hero]\n• A Guide to Meta Ads Targeting in 2026 [Jon Loomer Digital]\n• When Weird Stuff Happens to Meta Ads [Jon Loomer Digital]\n• Does Meta Want Audience Suggestions? [Jon Loomer Digital]\n\n━━━━━━━━━━━━━━━━━━━━━━\n\n🔹 Ad Creative Strategy: The Easy Way to Improve Facebook and Instagram ROAS\nAre your Facebook and Instagram ads getting lost in the feed while your competitors keep stealing the clicks? Are you spending time and money tweaking campaign settings when your real problem might be on screen? In this article, you'll discover how t...\n🔹 Google Ads for Sensitive Categories: What You Need to Know to Succeed\nSome industries Google Ads considers as \"sensitive categories\" for advertising, which results in targeting restrictions, but there are ways you can still target efficiently without ad disapproval flags. The post Google Ads for Sensitive Categories: W...\n🔹 How Much Do Instagram Ads Cost in 2026? (+How to Make the Most of Your Budget)\nWant to invest in Instagram ads? Read this guide to costs, benefits, and tips first. The post How Much Do Instagram Ads Cost in 2026? (+How to Make the Most of Your Budget) appeared first on WordStream.\n🔹 Everything You Need to Know About Hero Conf UK 2026\nOur&#160;must-attend&#160;event for PPC and Paid Social professionals returns to Brighton on Thursday 30th and Friday 1st May 2026. This will be our second year of bringing Hero Conf back to the UK audience and it is going to be even bigger and bolde...\n🔹 Programmatic Campaigns in 2026: Employing Tactics, Data, and Bid Strategies\nProgrammatic advertising is the automated buying and selling of digital ad inventory using software, data, and real-time auctions.&#160; Over recent years, it has became the backbone of digital media. From display to CTV to digital audio, programmati...\n\n━━━━━━━━━━━━━━━━━━━━━━\n\nAcompanhe as fontes abaixo para se aprofundar em cada tema. Toda semana a Zadz traz uma nova curadoria com o que há de mais relevante no mundo de performance e tráfego pago.\n\n🚀 Precisa de ajuda para aplicar essas novidades nas suas campanhas? Fale com a Zadz!",
+    "tags": [
+      "Google Ads",
+      "Meta Ads",
+      "Estratégia",
+      "Automação"
+    ],
+    "sources": [
+      {
+        "title": "Ad Creative Strategy: The Easy Way to Improve Facebook and Instagram ROAS",
+        "url": "https://www.socialmediaexaminer.com/ad-creative-strategy-the-easy-way-to-improve-facebook-and-instagram-roas/"
+      },
+      {
+        "title": "Google Ads for Sensitive Categories: What You Need to Know to Succeed",
+        "url": "https://www.wordstream.com/blog/google-ads-sensitive-categories"
+      },
+      {
+        "title": "How Much Do Instagram Ads Cost in 2026? (+How to Make the Most of Your Budget)",
+        "url": "https://www.wordstream.com/blog/instagram-ads-cost"
+      },
+      {
+        "title": "Everything You Need to Know About Hero Conf UK 2026",
+        "url": "https://ppchero.com/everything-you-need-to-know-about-hero-conf-uk-2026/"
+      },
+      {
+        "title": "Programmatic Campaigns in 2026: Employing Tactics, Data, and Bid Strategies",
+        "url": "https://ppchero.com/programmatic-campaigns-in-2026/"
+      },
+      {
+        "title": "A Guide to Meta Ads Targeting in 2026",
+        "url": "https://www.jonloomer.com/meta-ads-targeting-2026/"
+      },
+      {
+        "title": "When Weird Stuff Happens to Meta Ads",
+        "url": "https://www.jonloomer.com/weird-stuff-meta-ads/"
+      },
+      {
+        "title": "Does Meta Want Audience Suggestions?",
+        "url": "https://www.jonloomer.com/qvt/does-meta-want-audience-suggestions/"
+      }
+    ]
+  },
+  {
     "id": "2025-03-24-meta-ads-advantage-plus",
     "title": "Meta Advantage+: Como a IA está mudando as campanhas de tráfego pago",
     "date": "2025-03-24",
     "summary": "O Meta Advantage+ Shopping continua evoluindo com novas funcionalidades de automação que estão revolucionando a forma como as agências gerenciam campanhas de e-commerce. Entenda o que mudou e como adaptar sua estratégia.",
     "content": "O Meta Advantage+ Shopping continua evoluindo com novas funcionalidades de automação que estão revolucionando a forma como as agências gerenciam campanhas de e-commerce.\n\nA principal novidade é a expansão dos públicos automáticos, que agora permite que o algoritmo explore audiências além das segmentações definidas manualmente quando identifica oportunidades de conversão.\n\nAlém disso, o creative automation foi aprimorado: o sistema agora testa automaticamente variações de textos, imagens e calls-to-action, entregando a combinação com melhor desempenho para cada perfil de usuário.\n\nPara gestores de tráfego, isso significa que a curadoria criativa e a análise estratégica de resultados ganham ainda mais importância — enquanto a otimização técnica fica cada vez mais nas mãos da plataforma.\n\nComo adaptar sua estratégia:\n• Invista em volume e qualidade de criativos\n• Defina bem os eventos de conversão no Pixel\n• Use o Budget Campaign Level para dar liberdade ao algoritmo\n• Acompanhe métricas de topo (CPM, CTR) além das de fundo (CPA)",
-    "tags": ["Meta Ads", "Automação", "E-commerce"],
+    "tags": [
+      "Meta Ads",
+      "Automação",
+      "E-commerce"
+    ],
     "sources": [
-      { "title": "Meta Business Blog", "url": "https://www.facebook.com/business/news" },
-      { "title": "Search Engine Journal — Paid Social", "url": "https://www.searchenginejournal.com/category/paid-social/" }
+      {
+        "title": "Meta Business Blog",
+        "url": "https://www.facebook.com/business/news"
+      },
+      {
+        "title": "Search Engine Journal — Paid Social",
+        "url": "https://www.searchenginejournal.com/category/paid-social/"
+      }
     ]
   },
   {
@@ -17,10 +74,20 @@
     "date": "2025-03-17",
     "summary": "O Google está respondendo às críticas sobre a falta de transparência no Performance Max com novos relatórios de placement, controles de brand safety e insights de asset group. Veja o que mudou e o que ainda falta.",
     "content": "O Google está respondendo às críticas sobre a falta de transparência no Performance Max (PMax) com um conjunto de melhorias significativas lançadas no início de 2025.\n\nOs principais updates incluem:\n\n1. Relatórios de canal detalhados: agora é possível ver a distribuição de impressões e conversões entre Search, Display, YouTube, Gmail e Shopping dentro de uma mesma campanha PMax.\n\n2. Brand Safety controls: os anunciantes podem excluir categorias de conteúdo sensível e adicionar listas de exclusão de placement em nível de campanha.\n\n3. Asset Group insights: relatórios expandidos mostram quais combinações de criativos performam melhor em cada canal, ajudando na tomada de decisão criativa.\n\nO que ainda falta:\nApesar dos avanços, gestores de tráfego ainda reclamam da impossibilidade de ver as queries de busca que ativam os anúncios e da dificuldade em isolar o performance de Search Genérico versus Brand.\n\nRecomendação Zadz: Use PMax em conjunto com campanhas de Search focadas em brand e branded keywords, e monitore de perto a segmentação de audiência nos sinais para garantir que o algoritmo está sendo guiado corretamente.",
-    "tags": ["Google Ads", "Performance Max", "Estratégia"],
+    "tags": [
+      "Google Ads",
+      "Performance Max",
+      "Estratégia"
+    ],
     "sources": [
-      { "title": "Google Ads Blog", "url": "https://blog.google/products/ads/" },
-      { "title": "Search Engine Land — Google Ads", "url": "https://searchengineland.com/category/google-ads" }
+      {
+        "title": "Google Ads Blog",
+        "url": "https://blog.google/products/ads/"
+      },
+      {
+        "title": "Search Engine Land — Google Ads",
+        "url": "https://searchengineland.com/category/google-ads"
+      }
     ]
   }
 ]
