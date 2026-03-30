@@ -404,6 +404,7 @@ def main():
             score = score_relevance(item["title"], item["summary"])
             if score > 0:
                 item["score"] = score
+                item = translate_article(item)
                 all_articles.append(item)
 
     print(f"\n📊 Artigos relevantes encontrados: {len(all_articles)}")
@@ -422,6 +423,7 @@ def main():
                 score = score_relevance(item["title"], item["summary"])
                 if score > 0:
                     item["score"] = score
+                    item = translate_article(item)
                     all_articles.append(item)
         print(f"\n📊 Artigos após ampliar janela: {len(all_articles)}")
 
