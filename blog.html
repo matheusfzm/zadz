@@ -149,6 +149,107 @@
       line-height: 1;
     }
 
+    /* ── CARD DE POST ───────────────────────────── */
+.post-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0,229,255,.12);
+  border-color: rgba(0,229,255,.35);
+}
+
+/* Capa com imagem */
+.post-cover {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--bg2);
+}
+
+.post-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+
+.post-card:hover .post-cover img {
+  transform: scale(1.05);
+}
+
+/* Placeholder quando não tem imagem */
+.post-cover-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--bg2), var(--bg3));
+  font-size: 3rem;
+}
+
+/* Corpo do card */
+.post-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+}
+
+.post-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(0,229,255,.08);
+  border: 1px solid rgba(0,229,255,.15);
+  border-radius: 100px;
+  padding: 3px 10px;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.post-card h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.post-summary {
+  font-size: 0.87rem;
+  color: var(--muted);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.post-read-more {
+  color: var(--accent);
+  font-weight: 600;
+}
+
     /* ── TICKER ── */
     .ticker-wrap {
       overflow: hidden;
@@ -767,6 +868,86 @@
         </a>`
       ).join('');
     }
+
+    function renderPostCard(post) {
+  const date = post.date
+    ? new Date(post.date + 'T00:00:00').toLocaleDateString('pt-BR',
+        { day: '2-digit', month: 'short', year: 'numeric' })
+    : '';
+
+  const tags = (post.tags || []).slice(0, 3)
+    .map(t => `<span class="post-tag">${t}</span>`).join('');
+
+  // ← Aqui está a lógica de imagem
+  const cover = post.image
+    ? `<div class="post-cover">
+         <img src="${post.image}" alt="Capa: ${post.title}" loading="lazy">
+       </div>`
+    : `<div class="post-cover-placeholder" aria-hidden="true">📰</div>`;
+
+  const summary = (post.summary || '').slice(0, 140) + '...';
+  const title   = post.title.replace(/📰\s?/, '');
+
+  return `
+    <a href="/blog.html?id=${post.id}" class="post-card" role="listitem"
+       aria-label="Ler post: ${title}">
+      ${cover}
+      <div class="post-body">
+        <div>${tags}</div>
+        <h2>${title}</h2>
+        <p class="post-summary">${summary}</p>
+        <div class="post-meta">
+          <span>${date}</span>
+          <span class="post-read-more">Ler post →</span>
+        </div>
+      </div>
+    </a>`;
+}
+function renderPost(post) {
+  // Capa de destaque do post
+  const heroCover = post.image
+    ? `<div style="
+         width:100%;
+         max-width:860px;
+         aspect-ratio:16/9;
+         border-radius:16px;
+         overflow:hidden;
+         margin-bottom:40px;
+         border:1px solid var(--border);
+       ">
+         <img src="${post.image}"
+              alt="Capa: ${post.title}"
+              loading="eager"
+              style="width:100%;height:100%;object-fit:cover;">
+       </div>`
+    : '';
+
+  const title   = post.title.replace(/📰\s?/, '');
+  const date    = post.date
+    ? new Date(post.date + 'T00:00:00').toLocaleDateString('pt-BR',
+        { day: '2-digit', month: 'long', year: 'numeric' })
+    : '';
+
+  const tags = (post.tags || [])
+    .map(t => `<span class="post-tag">${t}</span>`).join('');
+
+  // Injete no container da página de leitura
+  document.getElementById('postView').innerHTML = `
+    ${heroCover}
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+      ${tags}
+    </div>
+    <h1 style="
+      font-family:'Syne',sans-serif;
+      font-size:clamp(1.6rem,3vw,2.2rem);
+      font-weight:800;
+      line-height:1.2;
+      margin-bottom:16px;
+    ">${title}</h1>
+    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:40px;">${date}</p>
+    <div class="post-content">${post.content || post.summary}</div>
+  `;
+}
 
     // ── MODAL ──
     const backdrop = document.getElementById('modal-backdrop');
