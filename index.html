@@ -56,6 +56,15 @@
 <link rel="manifest" href="/manifest.json">
 
 <!-- ═══════════════════════════════════════════
+     LIBS DE ANIMAÇÃO
+═══════════════════════════════════════════ -->
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js" defer></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+
+<!-- ═══════════════════════════════════════════
      JSON-LD STRUCTURED DATA
 ═══════════════════════════════════════════ -->
 <script type="application/ld+json">
@@ -1427,11 +1436,22 @@
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-heading">
+  <div id="tsparticles" aria-hidden="true" style="
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+"></div>
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-glow2" aria-hidden="true"></div>
   <div class="hero-content">
-    <div class="hero-badge" role="note">
-      <span class="badge-dot" aria-hidden="true"></span>
+    <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+<div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+<div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+    <div class="hero-badge" data-aos="fade-down" data-aos-delay="100">
+      <span class="badge-dot" aria-hidden="true">
+        <span class="section-label" data-aos="fade-right"></span>
+      </span>
       Especialistas em Tráfego Pago · Marília/SP
     </div>
     <h1 id="hero-heading">
@@ -1883,6 +1903,149 @@
 </style>
 
 <script>
+
+  // ── tsParticles ───────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  tsParticles.load('tsparticles', {
+    fpsLimit: 60,
+    particles: {
+      number: { value: 55, density: { enable: true, area: 900 } },
+      color:  { value: '#00E5FF' },
+      shape:  { type: 'circle' },
+      opacity: {
+        value: 0.18,
+        animation: { enable: true, speed: 0.6, minimumValue: 0.05, sync: false }
+      },
+      size: {
+        value: { min: 1, max: 3 },
+        animation: { enable: true, speed: 1.5, minimumValue: 0.3, sync: false }
+      },
+      links: {
+        enable: true,
+        distance: 140,
+        color: '#00E5FF',
+        opacity: 0.07,
+        width: 1
+      },
+      move: {
+        enable: true, speed: 0.6,
+        direction: 'none', random: true,
+        straight: false, outModes: 'out'
+      }
+    },
+    interactivity: {
+      events: {
+        onHover: { enable: true, mode: 'grab' },
+        onClick: { enable: false }
+      },
+      modes: {
+        grab: { distance: 160, links: { opacity: 0.25 } }
+      }
+    },
+    detectRetina: true
+  });
+});
+
+// ── GSAP + ScrollTrigger ──────────────────────
+gsap.registerPlugin(ScrollTrigger);
+
+// Animação de entrada em cada seção
+gsap.utils.toArray('section:not(.hero)').forEach(section => {
+  gsap.fromTo(section,
+    { opacity: 0, y: 50 },
+    {
+      opacity: 1, y: 0,
+      duration: 0.9,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 82%',
+        toggleActions: 'play none none none'
+      }
+    }
+  );
+});
+
+// Stagger nos cards de serviço
+gsap.utils.toArray('.service-card').forEach((card, i) => {
+  gsap.fromTo(card,
+    { opacity: 0, y: 40 },
+    {
+      opacity: 1, y: 0,
+      duration: 0.6,
+      delay: i * 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 88%'
+      }
+    }
+  );
+});
+
+// Stagger nos cards de resultado
+gsap.utils.toArray('.result-card').forEach((card, i) => {
+  gsap.fromTo(card,
+    { opacity: 0, scale: 0.94 },
+    {
+      opacity: 1, scale: 1,
+      duration: 0.55,
+      delay: i * 0.12,
+      ease: 'back.out(1.4)',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 88%'
+      }
+    }
+  );
+});
+
+// Stagger nos preços
+gsap.utils.toArray('.price-card').forEach((card, i) => {
+  gsap.fromTo(card,
+    { opacity: 0, y: 30 },
+    {
+      opacity: 1, y: 0,
+      duration: 0.6,
+      delay: i * 0.15,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 88%'
+      }
+    }
+  );
+});
+
+// Stagger depoimentos
+gsap.utils.toArray('.testimonial-card').forEach((card, i) => {
+  gsap.fromTo(card,
+    { opacity: 0, x: i % 2 === 0 ? -30 : 30 },
+    {
+      opacity: 1, x: 0,
+      duration: 0.65,
+      delay: i * 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 88%'
+      }
+    }
+  );
+});
+
+// Parallax sutil no hero-content
+gsap.to('.hero-content', {
+  yPercent: -12,
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '.hero',
+    start: 'top top',
+    end: 'bottom top',
+    scrub: true
+  }
+});
+
   // ─── FAQ Toggle ───────────────────────────────────────────
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
