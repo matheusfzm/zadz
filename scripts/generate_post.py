@@ -11,6 +11,24 @@ import hashlib
 import urllib.request
 import urllib.error
 import xml.etree.ElementTree as ET
+import textwrap
+import os
+
+# Pillow para geração de imagens — instale com: pip install pillow
+try:
+    from PIL import Image, ImageDraw, ImageFont
+    PILLOW_OK = True
+except ImportError:
+    PILLOW_OK = False
+    print("⚠️  Pillow não instalado. Imagens não serão geradas. Execute: pip install pillow")
+
+# deep-translator para tradução pt-BR — instale com: pip install deep-translator
+try:
+    from deep_translator import GoogleTranslator
+    TRANSLATE_OK = True
+except ImportError:
+    TRANSLATE_OK = False
+    print("⚠️  deep-translator não instalado. Execute: pip install deep-translator")
 from datetime import datetime, timedelta, timezone
 
 # ── FEEDS RSS (atualizados e testados) ────────────────────────────────────
@@ -64,6 +82,91 @@ HEADERS = {
     "Accept": "application/rss+xml, application/xml, text/xml, */*",
     "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
 }
+
+def detect_language(text):
+    """Detecta se o texto está em inglês verificando palavras comuns."""
+    if not text:
+        return "unknown"
+    en_markers = [
+        "the ", " and ", " for ", " with ", " from ", " this ", " that ",
+        " are ", " is ", " was ", " will ", " your ", " has ", " have ",
+        " how ", " what ", " when ", " new ", " ads ", " ad ", " google ",
+    ]
+    text_lower = text.lower()
+    hits = sum(1 for m in en_markers if m in text_lower)
+    return "en" if hits >= 2 else "pt"
+
+def translate_text(text, max_chars=450):
+    """Traduz um texto para pt-BR. Retorna o original se a tradução falhar."""
+    if not text or not TRANSLATE_OK:
+        return text
+    # Só traduz se detectar inglês
+    if detect_language(text) != "en":
+        return text
+    try:
+        # Limita o tamanho para evitar erro de quota
+        chunk = text[:max_chars]
+        translated = GoogleTranslator(source="auto", target="pt").translate(chunk)
+        return translated or text
+    except Exception as e:
+        print(f"  ⚠️  Erro na tradução: {e}")
+        return text
+    
+def translate_article(article):
+    """Traduz título e resumo de um artigo para pt-BR."""
+    article["title"]   = translate_text(article["title"])
+    article["summary"] = translate_text(article["summary"])
+    return article
+
+def generate_cover_image(post_id, title, tags):
+    """Gera uma imagem de capa 1200x630 para o post e salva em og-images/."""
+    if not PILLOW_OK:
+        return None
+
+    os.makedirs("og-images", exist_ok=True)
+    W, H = 1200, 630
+
+    # Fundo degradê escuro
+    img  = Image.new("RGB", (W, H), "#080B10")
+    draw = ImageDraw.Draw(img)
+
+    # Faixa de brilho lateral esquerda (accent #00E5FF)
+    for i in range(300):
+        alpha = int(30 * (1 - i / 300))
+        draw.line([(i, 0), (i, H)], fill=(0, 229, 255, alpha))
+
+    # Barra superior accent
+    draw.rectangle([(0, 0), (W, 6)], fill="#00E5FF")
+
+    # Fontes — tenta DejaVu (disponível no Ubuntu/GitHub Actions), fallback padrão
+    try:
+        font_logo  = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 32)
+        font_title = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 62)
+        font_tags  = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 28)
+    except:
+        font_logo  = ImageFont.load_default()
+        font_title = ImageFont.load_default()
+        font_tags  = ImageFont.load_default()
+
+    # Logo ZADZ
+    draw.text((72, 48), "ZADZ", font=font_logo, fill="#00E5FF")
+
+    # Título do post com quebra automática de linha
+    clean_title = title.replace("📰 ", "").replace("Novidades de Tráfego Pago — ", "")
+    wrapped     = textwrap.fill(clean_title[:100], width=22)
+    draw.multiline_text((72, 140), wrapped, font=font_title, fill="#E8EDF5", spacing=16)
+
+    # Tags na parte inferior
+    tag_text = "  ·  ".join(tags[:3]) if tags else "Tráfego Pago"
+    draw.text((72, H - 80), tag_text, font=font_tags, fill="#6B7A8D")
+
+    # Linha separadora antes das tags
+    draw.line([(72, H - 100), (W - 72, H - 100)], fill="#1a2535", width=1)
+
+    path = f"og-images/{post_id}.png"
+    img.save(path, "PNG", optimize=True)
+    print(f"  🖼️  Imagem gerada: {path}")
+    return "/" + path
 
 
 def fetch_feed(name, url):
@@ -250,6 +353,11 @@ Acompanhe as fontes abaixo para se aprofundar em cada tema. Toda semana a Zadz t
 
     post_id = f"{today_str}-semana-{hashlib.md5(week_str.encode()).hexdigest()[:6]}"
 
+    image_path = generate_cover_image(
+    post_id,
+    f"📰 Novidades de Tráfego Pago — {week_str}",
+    auto_tags
+)
     return {
         "id": post_id,
         "title": f"📰 Novidades de Tráfego Pago — {week_str}",
@@ -257,6 +365,7 @@ Acompanhe as fontes abaixo para se aprofundar em cada tema. Toda semana a Zadz t
         "summary": summary,
         "content": content,
         "tags": auto_tags[:4],
+        "image": image_path,
         "sources": sources[:8],
     }
 
